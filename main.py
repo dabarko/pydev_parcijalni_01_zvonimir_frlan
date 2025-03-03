@@ -1,4 +1,5 @@
 import json
+import os
 
 
 OFFERS_FILE = "offers.json"
@@ -30,10 +31,75 @@ def create_new_offer(offers, products, customers):
     Prompt user to create a new offer by selecting a customer, entering date,
     choosing products, and calculating totals.
     """
+    new_offer = {}
+
+    # iduci offers id
+    new_offer['offer_number'] = len(offers)+1
+
     # Omogućite unos kupca
+    os.system('cls')
+    print ('Unesite kupca iz liste:\n')
+    kupci = []
+    for i in customers:
+        print(i['name'])
+        kupci.append(i['name'])
+    print('\n')
+    new_offer['customer'] = input('kupac: ')
+    while True: 
+        if new_offer['customer'] not in kupci:
+            os.system('cls')
+            for i in customers:
+                print(i['name'])
+            new_offer['customer'] = input('\nunesite postojeceg kupca: ')
+        else:
+            break
+    # datum
+    os.system('cls')
+    new_offer['date'] = input ('unesite datum u formatu YYYY-MM-DD (npr.2024-11-01)')
+    # proizvodi
+    os.system('cls')
+    print ('izaberite id ispred proizvoda da bi ga dodali u ponudu\n\n')
+    proizvodi = []
+    proizvod = {'product_id' : '','product_name' : '','description' : '','price' : 0,'quantity' : 0,'item_total' : 0}
+    proizvod_cijena = 0.0
+    porez = 1.1
+    proizvodi_total = proizvod_cijena * porez
+
+    while True:
+        print_product_list(products)
+        entered_id = int(input ('unesite id proizvoda: '))
+        kolicina = int(input ('upisite kolicinu: '))
+        id = 1
+        for i in products:
+            #print (type(i['id']))
+            if i['id'] == entered_id:
+                print (f"dodali ste: {i['name']} ")
+                proizvod['product_id'] = id
+                proizvod['product_name'] = i['name']
+                proizvod['description'] = i['description']
+                proizvod['price'] = i['price']
+                proizvod['quantity'] = kolicina
+                proizvod['item_total'] = i['price'] * proizvod['quantity']
+                proizvodi.append(proizvod)
+                print (proizvod)
+                print (proizvodi)
+            elif entered_id == 'x':
+                break
+        more_prod = input('zelite li dodati novi proizvod? da/ne')
+        if more_prod == 'da':
+            continue
+        else:
+            break
+
+'''    print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
+         "id": 2,
+        "name": "Smartphone",
+        "description": "6-inch display, 128GB storage",
+        "price": 500.0'''
     # Izračunajte sub_total, tax i total
+
     # Dodajte novu ponudu u listu offers
-    pass
+    
 
 
 # TODO: Implementirajte funkciju za upravljanje proizvodima.
@@ -76,6 +142,11 @@ def print_offer(offer):
         print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
         print(f"    Kolicina: {item['quantity']}, Cijena: ${item['price']}, Ukupno: ${item['item_total']}")
     print(f"Ukupno: ${offer['sub_total']}, Porez: ${offer['tax']}, Ukupno za platiti: ${offer['total']}")
+
+def print_product_list(products):
+    for i in products:
+        print(f"{i['id']} - {i['name']} - {i['description']} - {i['price']}")
+    print('za prekid unesite x\n\n')
 
 
 def main():
