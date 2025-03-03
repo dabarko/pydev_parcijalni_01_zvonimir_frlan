@@ -55,7 +55,7 @@ def create_new_offer(offers, products, customers):
             break
     # datum
     os.system('cls')
-    new_offer['date'] = input ('unesite datum u formatu YYYY-MM-DD (npr.2024-11-01)')
+    new_offer['date'] = input ('unesite datum u formatu YYYY-MM-DD (npr.2024-11-01): ')
     # proizvodi
     os.system('cls')
     print ('izaberite id ispred proizvoda da bi ga dodali u ponudu\n\n')
@@ -78,8 +78,8 @@ def create_new_offer(offers, products, customers):
                 proizvod['item_total'] = i['price'] * proizvod['quantity']
                 proizvodi.append(proizvod)
                 id = id + 1
-                print (proizvod)
-                print (proizvodi)
+                #print (proizvod)
+                #print (proizvodi)
             elif entered_id == 'x':
                 break
         more_prod = input('zelite li dodati novi proizvod? da/ne ')
@@ -111,10 +111,44 @@ def manage_products(products):
     """
     Allows the user to add a new product or modify an existing product.
     """
+    new_product = {}
     # Omogućite korisniku izbor između dodavanja ili izmjene proizvoda
+    os.system('cls')
+    while True:
+        print("1. Dodajte novi proizvod")
+        print("2. Promjenite postojeci proizvod")
+        print("3. Izlaz")
+        print('\n\n')
+        choice = input("Odabrana opcija: ")
     # Za dodavanje: unesite podatke o proizvodu i dodajte ga u listu products
+        if choice == "1":
+            new_product['id'] = len(products)+1
+            new_product['name'] = input('unesite ime proizvoda: ')
+            new_product['description'] = input('unesite opis proizvoda: ')
+            new_product['price'] = float(input('unesite cijenu proizvoda: '))
+            
+
+            data = load_data('products.json')
+            data.append(new_product)
+            save_data('products.json', data)
+
     # Za izmjenu: selektirajte proizvod i ažurirajte podatke
-    pass
+        elif choice == "2":
+            for i in products:
+                print (f"{i['id']} - {i['name']}")
+         
+            id = int(input ('\nodaberite id pored proizvoda koji zelite promjeniti:\n'))
+            for i in products:
+                #print (type(i['id']))
+                #print (type(id))
+                if i['id'] == id:
+                    i['name'] = input('upisite novo ime: ')
+                    i['description'] = input('upisite novi opis: ')
+                    i['price'] = float(input('upisite novu cijenu: '))
+            for i in products:
+                print (f"{i['id']} - {i['name']}")            
+        elif choice == "3":
+            break
 
 
 # TODO: Implementirajte funkciju za upravljanje kupcima.
@@ -122,9 +156,30 @@ def manage_customers(customers):
     """
     Allows the user to add a new customer or view all customers.
     """
+    new_customer = {}
+    os.system('cls')
+    while True:
+        print("1. Dodajte novog kupca")
+        print("2. Izlistajte kupce")
+        print("3. Izlaz")
+        print('\n\n')
+        choice = input("Odabrana opcija: ")
     # Za dodavanje: omogući unos imena kupca, emaila i unos VAT ID-a
+        if choice == "1":
+            new_customer['name'] = input('unesite ime kupca: ')
+            new_customer['email'] = input('unesite email kupca: ')
+            new_customer['vat_id'] = float(input('unesite vat_id: '))
+            
+
+            data = load_data('customers.json')
+            data.append(new_customer)
+            save_data('customers.json', data)
     # Za pregled: prikaži listu svih kupaca
-    pass
+        elif choice == "2":
+            for i in customers:
+                print (f"{i['name']} - {i['email']} - {i['vat_id']}")
+        elif choice == "3":
+            break
 
 
 # TODO: Implementirajte funkciju za prikaz ponuda.

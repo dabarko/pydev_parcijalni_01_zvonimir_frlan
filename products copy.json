@@ -31,9 +31,9 @@
     },
     {
         "id": 6,
-        "name": "sadasd",
-        "description": "asdasd",
-        "price": 11.0
+        "name": "Keyboard",
+        "description": "Mechanical, RGB backlit",
+        "price": 25.0
     },
     {
         "id": 7,
@@ -88,11 +88,5 @@
         "name": "Gaming Console",
         "description": "4K HDR, 1TB storage",
         "price": 400.0
-    },
-    {
-        "id": 16,
-        "name": "xxxxxxxxxxxx",
-        "description": "yyyyyyyyyy",
-        "price": 1111.0
     }
 ]
