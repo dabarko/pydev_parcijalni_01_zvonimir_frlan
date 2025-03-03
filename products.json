@@ -91,8 +91,20 @@
     },
     {
         "id": 16,
-        "name": "xxxxxxxxxxxx",
-        "description": "yyyyyyyyyy",
-        "price": 1111.0
+        "name": "viava",
+        "description": "i mrlje idu papa",
+        "price": 44.0
+    },
+    {
+        "id": 17,
+        "name": "toster",
+        "description": "za fine sendvice",
+        "price": 23.0
+    },
+    {
+        "id": 18,
+        "name": "krigla",
+        "description": "za pivu",
+        "price": 2.0
     }
 ]

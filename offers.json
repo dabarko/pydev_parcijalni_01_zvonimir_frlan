@@ -246,5 +246,75 @@
         "sub_total": 2140.0,
         "tax": 214.0,
         "total": 2354.0
+    },
+    {
+        "offer_number": 9,
+        "customer": "testorina",
+        "date": "2023-11-03",
+        "items": [
+            {
+                "product_id": 1,
+                "product_name": "toster",
+                "description": "za fine sendvice",
+                "price": 23.0,
+                "quantity": 111,
+                "item_total": 2553.0
+            },
+            {
+                "product_id": 2,
+                "product_name": "Webcam",
+                "description": "1080p HD, autofocus",
+                "price": 60.0,
+                "quantity": 1,
+                "item_total": 60.0
+            }
+        ],
+        "sub_total": 2613.0,
+        "tax": 261.3,
+        "total": 2874.3
+    },
+    {
+        "offer_number": 10,
+        "customer": "Tech Solutions",
+        "date": "2024-05-01",
+        "items": [
+            {
+                "product_id": 1,
+                "product_name": "krigla",
+                "description": "za pivu",
+                "price": 2.0,
+                "quantity": 111,
+                "item_total": 222.0
+            }
+        ],
+        "sub_total": 222.0,
+        "tax": 22.200000000000003,
+        "total": 244.2
+    },
+    {
+        "offer_number": 11,
+        "customer": "testorina",
+        "date": "2024-05-02",
+        "items": [
+            {
+                "product_id": 1,
+                "product_name": "Smartwatch",
+                "description": "Fitness tracking, heart rate monitor",
+                "price": 150.0,
+                "quantity": 1,
+                "item_total": 150.0
+            },
+            {
+                "product_id": 2,
+                "product_name": "Laptop",
+                "description": "15-inch display, 8GB RAM, 256GB SSD",
+                "price": 800.0,
+                "quantity": 1,
+                "item_total": 800.0
+            }
+        ],
+        "sub_total": 950.0,
+        "tax": 95.0,
+        "total": 1045.0
     }
 ]

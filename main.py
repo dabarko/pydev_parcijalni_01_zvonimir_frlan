@@ -1,5 +1,6 @@
 import json
 import os
+import datetime
 
 
 OFFERS_FILE = "offers.json"
@@ -101,10 +102,10 @@ def create_new_offer(offers, products, customers):
     print (new_offer)
     
     # Dodajte novu ponudu u listu offers
-    data = load_data('offers.json')
-    data.append(new_offer)
-    save_data('offers.json', data)
-    
+    #data = load_data('offers.json')
+    #data.append(new_offer)
+    #save_data('offers.json', data)
+    offers.append(new_offer)
 
 # TODO: Implementirajte funkciju za upravljanje proizvodima.
 def manage_products(products):
@@ -126,11 +127,11 @@ def manage_products(products):
             new_product['name'] = input('unesite ime proizvoda: ')
             new_product['description'] = input('unesite opis proizvoda: ')
             new_product['price'] = float(input('unesite cijenu proizvoda: '))
-            
+            products.append(new_product)
 
-            data = load_data('products.json')
-            data.append(new_product)
-            save_data('products.json', data)
+            #data = load_data('products.json')
+            #data.append(new_product)
+            #save_data('products.json', data)
 
     # Za izmjenu: selektirajte proizvod i ažurirajte podatke
         elif choice == "2":
@@ -168,12 +169,13 @@ def manage_customers(customers):
         if choice == "1":
             new_customer['name'] = input('unesite ime kupca: ')
             new_customer['email'] = input('unesite email kupca: ')
-            new_customer['vat_id'] = float(input('unesite vat_id: '))
+            new_customer['vat_id'] = input('unesite vat_id: ')
+            customers.append(new_customer)
             
 
-            data = load_data('customers.json')
-            data.append(new_customer)
-            save_data('customers.json', data)
+            #data = load_data('customers.json')
+            #data.append(new_customer)
+            #save_data('customers.json', data)
     # Za pregled: prikaži listu svih kupaca
         elif choice == "2":
             for i in customers:
@@ -188,6 +190,62 @@ def display_offers(offers):
     Display all offers, offers for a selected month, or a single offer by ID.
     """
     # Omogućite izbor pregleda: sve ponude, po mjesecu ili pojedinačna ponuda
+    os.system('cls')
+    while True:
+        print("1. prikazi sve ponude")
+        print("2. pregledaj ponude po mjesecima")
+        print("3. pregledaj ponudu po IDu")
+        print("4. Izlaz")
+        print('\n\n')
+        choice = input("Odabrana opcija: ")
+        if choice == "1":
+            for i in offers:
+                #print (i)
+                print(f"Ponuda br: {i['offer_number']}, Kupac: {i['customer']}, Datum ponude: {i['date']}")
+                print("Stavke:")
+                for item in i["items"]:
+                    print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
+                    print(f"    Kolicina: {item['quantity']}, Cijena: ${item['price']}, Ukupno: ${item['item_total']}")
+                print(f"Ukupno: ${i['sub_total']}, Porez: ${i['tax']}, Ukupno za platiti: ${i['total']}\n")
+        elif choice == "2":
+            month = int(input('upisi broj mjeseca za koji zelis pregledati ponude: '))
+            offer_by_month = []
+            for i in offers:
+                if datetime.datetime.strptime(i['date'], '%Y-%m-%d').month == month:
+                    offer_by_month.append(i)
+
+            for i in offer_by_month:
+                #print (i)
+                print(f"Ponuda br: {i['offer_number']}, Kupac: {i['customer']}, Datum ponude: {i['date']}")
+                print("Stavke:")
+                for item in i["items"]:
+                    print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
+                    print(f"    Kolicina: {item['quantity']}, Cijena: ${item['price']}, Ukupno: ${item['item_total']}")
+                print(f"Ukupno: ${i['sub_total']}, Porez: ${i['tax']}, Ukupno za platiti: ${i['total']}\n")
+  
+
+            '''# Desired month (e.g., March)
+            desired_month = 3
+
+            # Filter list members based on the desired month
+            filtered_data = [item for item in data if datetime.datetime.strptime(item['date'], '%Y-%m-%d').month == desired_month]
+
+            print(filtered_data)
+            '''
+        elif choice == "3":
+            id = int(input('upisi id ponude koju zelis pregledati: '))
+            for i in offers:
+                if id == i['offer_number']:
+                    print(f"Ponuda br: {i['offer_number']}, Kupac: {i['customer']}, Datum ponude: {i['date']}")
+                    print("Stavke:")
+                    for item in i["items"]:
+                        print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
+                        print(f"    Kolicina: {item['quantity']}, Cijena: ${item['price']}, Ukupno: ${item['item_total']}")
+                    print(f"Ukupno: ${i['sub_total']}, Porez: ${i['tax']}, Ukupno za platiti: ${i['total']}\n")
+        elif choice == "4":
+            break
+
+
     # Prikaz relevantnih ponuda na temelju izbora
     pass
 
@@ -201,6 +259,8 @@ def print_offer(offer):
         print(f"  - {item['product_name']} (ID: {item['product_id']}): {item['description']}")
         print(f"    Kolicina: {item['quantity']}, Cijena: ${item['price']}, Ukupno: ${item['item_total']}")
     print(f"Ukupno: ${offer['sub_total']}, Porez: ${offer['tax']}, Ukupno za platiti: ${offer['total']}")
+
+#def print_all_offers(offer):
 
 def print_product_list(products):
     for i in products:

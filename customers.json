@@ -48,5 +48,15 @@
         "name": "Bright Ideas",
         "email": "info@brightideas.com",
         "vat_id": "90123456789"
+    },
+    {
+        "name": "test",
+        "email": "testic",
+        "vat_id": "123123123"
+    },
+    {
+        "name": "testorina",
+        "email": "testovski",
+        "vat_id": "123123123"
     }
 ]
