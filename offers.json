@@ -212,5 +212,39 @@
         "sub_total": 700.0,
         "tax": 70.0,
         "total": 770.0
+    },
+    {
+        "offer_number": 8,
+        "customer": "Eco Solutions",
+        "date": "2024-11-01",
+        "items": [
+            {
+                "product_id": 1,
+                "product_name": "Tablet",
+                "description": "10-inch display, 64GB storage, WiFi",
+                "price": 300.0,
+                "quantity": 4,
+                "item_total": 1200.0
+            },
+            {
+                "product_id": 2,
+                "product_name": "Mouse",
+                "description": "Wireless, ergonomic design",
+                "price": 20.0,
+                "quantity": 7,
+                "item_total": 140.0
+            },
+            {
+                "product_id": 3,
+                "product_name": "Laptop",
+                "description": "15-inch display, 8GB RAM, 256GB SSD",
+                "price": 800.0,
+                "quantity": 1,
+                "item_total": 800.0
+            }
+        ],
+        "sub_total": 2140.0,
+        "tax": 214.0,
+        "total": 2354.0
     }
 ]
